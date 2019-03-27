@@ -1,5 +1,5 @@
 
-## *Working with Docker-Compose
+## Working with Docker-Compose
 
 - In the root directory of the project run "**docker-compose up**" command.
 - Wait all containers to start.
