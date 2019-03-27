@@ -1,0 +1,38 @@
+version: '3.7'
+services:
+  dev_elasticsearch:
+    image: elasticsearch:6.6.2
+    container_name: "pgelastic_elasticsearch"
+    restart: on-failure
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - elasticsearch_data_volume:/opt/elasticsearch/data
+  dev_redis:
+    image: redis
+    container_name: pgelastic_redis
+    restart: on-failure
+    command: redis-server --appendonly yes
+    ports:
+      - "6379:6379"  
+    volumes:
+      - redis_data_volume:/data
+  dev_postgressql:
+    image: postgres
+    container_name: pgelastic_postgresql
+    environment:
+      POSTGRES_PASSWORD: postgres
+    restart: on-failure
+
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data_volume:/var/lib/postgresql/data
+
+
+volumes:
+   elasticsearch_data_volume:
+   redis_data_volume:
+   postgres_data_volume:
+
